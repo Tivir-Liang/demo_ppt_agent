@@ -1,90 +1,66 @@
-🎓 Academic PPT Agent (demo)
-An AI-driven automation tool powered by the DeepSeek API and python-pptx.
-This Agent understands academic requirements, parses local documents, and autonomously generates and executes Python code to create professional, research-oriented PowerPoint presentations.
-⚠️ Important Notice (Demo Constraints)
-Demo Purpose Only
-This project is intended as a functional demonstration.
-Format Support
-Currently supports .docx and .txt files only.
-No Iterative Modification
-The tool is designed for one-shot generation. It does not support follow-up interactions or iterative refinement within the same session.
-Environment Recommendation
-It is strongly recommended to run this project inside a virtual environment (venv) to avoid dependency conflicts.
-🌟 Key Features
-🔹 Dual Input Modes
-Generate slides from a simple topic
-Or analyze local .docx / .txt files as input
-🔹 Intelligent Outlining
-Simulates an academic mentor’s logic
-Automatically structures:
-Title Slide
-Agenda
-Core Research Content
-Conclusion
-🔹 Autonomous Code Execution
-The Agent writes its own python-pptx script
-Executes it locally in a sandbox environment
-Outputs a ready-to-use .pptx file
-🔹 Self-Healing Mechanism
-If generated code fails:
-Captures traceback
-Rewrites code automatically
-Retries execution
-🛠️ Requirements & Installation
-1. Create Virtual Environment
+# 🎓 Academic PPT Agent (AutoPPT)
+
+An AI-driven automation tool powered by the DeepSeek API and `python-pptx`. This Agent understands academic requirements, parses local documents, and autonomously writes and executes Python code to generate professional, research-oriented PowerPoint presentations.
+
+---
+
+## ⚠️ Important Notice (Demo Constraints)
+
+- **Demo Purpose Only**: This project is a functional demo.  
+- **Format Support**: It currently supports `.docx` and `.txt` files only.  
+- **No Iterative Modification**: The tool is designed for one-shot generation. It does not support follow-up questions or iterative modifications to the generated PPT within the same session.  
+- **Environment**: It is highly recommended to run this script within a virtual environment (`venv`) to avoid dependency conflicts.  
+
+---
+
+## 🌟 Key Features
+
+- **Dual Input Modes**: Generate slides from a simple topic or by analyzing local `.docx` and `.txt` reference files.  
+- **Intelligent Outlining**: Simulates an academic mentor's logic to structure content (Title slide, Agenda, Core Research, and Conclusion).  
+- **Autonomous Code Execution**: The Agent writes its own `python-pptx` script and runs it in a local sandbox to render the `.pptx` file.  
+- **Self-Healing Mechanism**: If the generated code encounters an error, the Agent analyzes the traceback and re-writes the code to fix the issue.  
+
+---
+
+## 🛠️ Requirements & Installation
+
+It is recommended to set up a virtual environment first:
+
+```bash
 # Create a virtual environment
 python -m venv .venv
 
-# Activate (macOS / Linux)
+# Activate it (macOS/Linux)
 source .venv/bin/activate
 
-# Activate (Windows)
+# Activate it (Windows)
 .venv\Scripts\activate
-2. Install Dependencies
+
+# Install dependencies
 pip install python-pptx python-docx openai
-📦 Package Overview
-Package	Description
-python-pptx	Core engine for creating PowerPoint files
-python-docx	Extracts text from Word documents
-openai	Client for interacting with DeepSeek API
-🚀 Quick Start
-1. Configure API Key
-Replace with your actual DeepSeek key:
+
+## 🚀 Quick Start
+
+### 1. Configure API Key
+Replace the placeholder in the `AutoPPTAgent` class with your actual DeepSeek key:
+
+```python
 self.client = openai.OpenAI(
     api_key="YOUR_DEEPSEEK_API_KEY",
     base_url="https://api.deepseek.com"
 )
-2. Run the Script
+
+### 2. Run the Script
 python your_script_name.py
-3. Interaction Flow
-🧭 Mode Selection
-Enter y → Upload a file
-Enter n → Start from a topic
-📄 File Input
-Drag & drop file into terminal
-Or paste absolute path
-💬 Command Input
-Example:
-Summarize the key findings and generate an academic presentation
-📂 Workflow Architecture
-1. Input Parsing
-Cleans file paths
-Extracts text from .docx / .txt
-2. Planning Engine (Stage 1)
-LLM generates structured academic outline
-3. Rendering Engine (Stage 2)
-Agent writes python-pptx code
-Applies safety patches (e.g., removing MSO_ANCHOR)
-4. Sandbox Execution
-Executes code using isolated exec() environment
-5. Output Reporting
-Generates final file:
-output_presentation.pptx
-💡 Notes
-Best suited for:
-Academic presentations
-Research summaries
-Thesis defenses
-Not recommended for:
-Highly visual design-heavy slides
-Interactive editing workflows
+
+### 3. Interaction Flow
+Reference Mode: Type y to upload a file or n to start from a topic.
+File Path: Drag and drop your file into the terminal or paste the absolute path.
+Command: Enter your specific requirements (e.g., "Summarize the key findings").
+
+### 📂 Workflow Architecture
+Input Parsing: Cleans file paths and extracts text content from local documents.
+Planning Engine (Stage 1): The LLM generates a structured academic outline.
+Rendering Engine (Stage 2): The Agent writes python-pptx code, applying safety patches (like MSO_ANCHOR filtering).
+Sandbox Execution: Runs the code in an isolated exec() environment.
+Reporting: Outputs the final file as output_presentation.pptx.
