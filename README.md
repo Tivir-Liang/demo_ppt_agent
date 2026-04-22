@@ -1,4 +1,4 @@
-# 🎓 Academic PPT Agent (AutoPPT)
+# 🎓 Academic PPT Agent (demo)
 
 An AI-driven automation tool powered by the DeepSeek API and `python-pptx`. This Agent understands academic requirements, parses local documents, and autonomously writes and executes Python code to generate professional, research-oriented PowerPoint presentations.
 
@@ -38,10 +38,20 @@ source .venv/bin/activate
 
 # Install dependencies
 pip install python-pptx python-docx openai
+````
 
-# 🚀 Quick Start
+| Package     | Description                                                    |
+| ----------- | -------------------------------------------------------------- |
+| python-pptx | The core engine for creating and manipulating PowerPoint files |
+| python-docx | Used to parse and extract text from Word documents             |
+| openai      | The client used to communicate with the DeepSeek API           |
 
-## 1. Configure API Key
+---
+
+## 🚀 Quick Start
+
+### 1. Configure API Key
+
 Replace the placeholder in the `AutoPPTAgent` class with your actual DeepSeek key:
 
 ```python
@@ -49,47 +59,35 @@ self.client = openai.OpenAI(
     api_key="YOUR_DEEPSEEK_API_KEY",
     base_url="https://api.deepseek.com"
 )
-````
+```
 
-## 2. Run the Script
+---
+
+### 2. Run the Script
 
 ```bash
 python your_script_name.py
 ```
 
-## 3. Interaction Flow
+---
 
-* **Reference Mode**: Type `y` to upload a file or `n` to start from a topic
-* **File Path**: Drag and drop your file into the terminal or paste the absolute path
-* **Command**: Enter your specific requirements (e.g., *"Summarize the key findings"*)
+### 3. Interaction Flow
+
+* **Reference Mode**: Type `y` to upload a file or `n` to start from a topic.
+* **File Path**: Drag and drop your file into the terminal or paste the absolute path.
+* **Command**: Enter your specific requirements (e.g., "Summarize the key findings").
 
 ---
 
-# 📂 Workflow Architecture
+## 📂 Workflow Architecture
 
-## 1. Input Parsing
+1. **Input Parsing**: Cleans file paths and extracts text content from local documents.
+2. **Planning Engine (Stage 1)**: The LLM generates a structured academic outline.
+3. **Rendering Engine (Stage 2)**: The Agent writes `python-pptx` code, applying safety patches (like `MSO_ANCHOR` filtering).
+4. **Sandbox Execution**: Runs the code in an isolated `exec()` environment.
+5. **Reporting**: Outputs the final file as `output_presentation.pptx`.
 
-Cleans file paths and extracts text content from local documents.
-
-## 2. Planning Engine (Stage 1)
-
-The LLM generates a structured academic outline.
-
-## 3. Rendering Engine (Stage 2)
-
-The agent writes `python-pptx` code and applies safety patches (e.g., `MSO_ANCHOR` filtering).
-
-## 4. Sandbox Execution
-
-Runs the generated code in an isolated `exec()` environment.
-
-## 5. Reporting
-
-Outputs the final file as:
-
-```
-output_presentation.pptx
-```
+---
 
 ```
 ```
