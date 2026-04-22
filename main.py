@@ -19,7 +19,7 @@ except ImportError as e:
     sys.exit(1)
 
 # ─────────────────────────────────────────────
-# 2. 工具层：文件解析与执行沙盒（必须在类定义前）
+# 2. 工具层：文件解析与执行沙盒
 # ─────────────────────────────────────────────
 def extract_text_from_file(file_path: str) -> str:
     """提取本地文件的纯文本内容，支持 txt 和 docx"""
@@ -43,15 +43,12 @@ def extract_text_from_file(file_path: str) -> str:
         return "❌ 错误：不支持的文件格式。仅支持 .txt 和 .docx。"
 
 def execute_python_code(code_string: str) -> str:
-    """接收代码并执行。在执行前强行剔除可能导致崩溃的引用"""
-    # 补丁：强行删除所有包含 MSO_ANCHOR 的行，这是 python-pptx 在某些环境下容易报错的点
     code_string = re.sub(r'.*MSO_ANCHOR.*', '', code_string)
     
     output_buffer = io.StringIO()
     try:
         ssl._create_default_https_context = ssl._create_unverified_context
         with contextlib.redirect_stdout(output_buffer):
-            # 预注入常用模块与对象，确保模型生成的代码能直接访问
             exec_globals = {
                 'pptx': pptx,
                 'Inches': Inches, 
@@ -66,7 +63,7 @@ def execute_python_code(code_string: str) -> str:
         return f"代码执行报错: {type(e).__name__}: {str(e)}"
 
 # ─────────────────────────────────────────────
-# 3. 规划与执行层：学术风 PPT 引擎
+# 3. 规划与执行层
 # ─────────────────────────────────────────────
 class AutoPPTAgent:
     def __init__(self):
