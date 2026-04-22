@@ -60,7 +60,7 @@ Command: Enter your specific requirements (e.g., "Summarize the key findings").
 
 ---
 
-### 📂 Workflow Architecture
+## 📂 Workflow Architecture
 Input Parsing: Cleans file paths and extracts text content from local documents.
 Planning Engine (Stage 1): The LLM generates a structured academic outline.
 Rendering Engine (Stage 2): The Agent writes python-pptx code, applying safety patches (like MSO_ANCHOR filtering).
