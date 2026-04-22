@@ -58,6 +58,8 @@ Reference Mode: Type y to upload a file or n to start from a topic.
 File Path: Drag and drop your file into the terminal or paste the absolute path.
 Command: Enter your specific requirements (e.g., "Summarize the key findings").
 
+---
+
 ### 📂 Workflow Architecture
 Input Parsing: Cleans file paths and extracts text content from local documents.
 Planning Engine (Stage 1): The LLM generates a structured academic outline.
