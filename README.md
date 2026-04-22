@@ -39,9 +39,9 @@ source .venv/bin/activate
 # Install dependencies
 pip install python-pptx python-docx openai
 
-## 🚀 Quick Start
+# 🚀 Quick Start
 
-### 1. Configure API Key
+## 1. Configure API Key
 Replace the placeholder in the `AutoPPTAgent` class with your actual DeepSeek key:
 
 ```python
@@ -49,20 +49,47 @@ self.client = openai.OpenAI(
     api_key="YOUR_DEEPSEEK_API_KEY",
     base_url="https://api.deepseek.com"
 )
+````
 
-### 2. Run the Script
+## 2. Run the Script
+
+```bash
 python your_script_name.py
+```
 
-### 3. Interaction Flow
-Reference Mode: Type y to upload a file or n to start from a topic.
-File Path: Drag and drop your file into the terminal or paste the absolute path.
-Command: Enter your specific requirements (e.g., "Summarize the key findings").
+## 3. Interaction Flow
+
+* **Reference Mode**: Type `y` to upload a file or `n` to start from a topic
+* **File Path**: Drag and drop your file into the terminal or paste the absolute path
+* **Command**: Enter your specific requirements (e.g., *"Summarize the key findings"*)
 
 ---
 
-## 📂 Workflow Architecture
-Input Parsing: Cleans file paths and extracts text content from local documents.
-Planning Engine (Stage 1): The LLM generates a structured academic outline.
-Rendering Engine (Stage 2): The Agent writes python-pptx code, applying safety patches (like MSO_ANCHOR filtering).
-Sandbox Execution: Runs the code in an isolated exec() environment.
-Reporting: Outputs the final file as output_presentation.pptx.
+# 📂 Workflow Architecture
+
+## 1. Input Parsing
+
+Cleans file paths and extracts text content from local documents.
+
+## 2. Planning Engine (Stage 1)
+
+The LLM generates a structured academic outline.
+
+## 3. Rendering Engine (Stage 2)
+
+The agent writes `python-pptx` code and applies safety patches (e.g., `MSO_ANCHOR` filtering).
+
+## 4. Sandbox Execution
+
+Runs the generated code in an isolated `exec()` environment.
+
+## 5. Reporting
+
+Outputs the final file as:
+
+```
+output_presentation.pptx
+```
+
+```
+```
